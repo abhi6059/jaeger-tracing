@@ -1,0 +1,55 @@
+version : '3.5'
+services:
+  call:
+    # image : caller
+    build :
+      context : ./callerService
+      # args : 
+        # app_port : 5010
+    container_name : callerapp
+    ports :
+      - 5010:5010
+    networks : 
+      - mynet
+
+  sqr:
+    # image : sqrnum
+    build :
+      context : ./firstService
+      # args : 
+        # app_port : 5020
+    container_name : sqrapp
+    ports :
+      - 5020:5020
+    networks :
+      - mynet
+
+  cube:
+    # image : cubenum
+    build :
+      context : ./secondService
+      # args : 
+        # app_port : 5030
+    container_name : cubeapp
+    ports :
+      - 5030:5030
+    networks :
+      - mynet
+
+  sum:
+    # image : addnum
+    build :
+      context : ./thirdService
+      # args : 
+        # app_port : 5040
+    container_name : addapp
+    ports :
+      - 5040:5040
+    networks :
+      - mynet
+
+networks:
+  mynet:
+    name : dnetwork
+    driver : bridge 
+

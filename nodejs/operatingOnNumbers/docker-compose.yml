@@ -1,0 +1,43 @@
+version : '3.5'
+services:
+  call:
+    build :
+      context : ./caller
+    container_name : callnode
+    ports :
+      - 9000:9000
+    networks : 
+      - mynet
+
+  sqr:
+    build :
+      context : ./sqr
+    container_name : sqrnode
+    ports :
+      - 9001:9001
+    networks :
+      - mynet
+
+  cube:
+    build :
+      context : ./cube
+    container_name : cubenode
+    ports :
+      - 9002:9002
+    networks :
+      - mynet
+
+  sum:
+    build :
+      context : ./add
+    container_name : addnode
+    ports :
+      - 9003:9003
+    networks :
+      - mynet
+
+networks:
+  mynet:
+    name : dnetwork
+    driver : bridge 
+
